@@ -65,11 +65,33 @@ const HelpCenter = () => (
   </div>
 );
 
-const WeatherWidget = () => (
-  <div className="mt-8 text-center">
-    <iframe title="weather" src="https://forecast7.com/en/48d15103d62/williston/" frameBorder="0" width="100%" height="200"></iframe>
-  </div>
-);
+import { useEffect } from "react";
+
+const WeatherWidget = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://weatherwidget.io/js/widget.min.js";
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
+  return (
+    <div className="text-center mt-6">
+      <a
+        className="weatherwidget-io"
+        href="https://forecast7.com/en/48d15n103d62/williston/"
+        data-label_1="WILLISTON"
+        data-label_2="WEATHER"
+        data-theme="original"
+      >
+        WILLISTON WEATHER
+      </a>
+    </div>
+  );
+};
+
+export default WeatherWidget;
+
 
 export default function App() {
   return (
